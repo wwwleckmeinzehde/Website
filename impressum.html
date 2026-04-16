@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum – wwwleckmeinzeh.de</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-yellow: #f5e642;
+    --hot-pink: #ff2d78;
+    --acid-green: #39ff14;
+    --chaos-orange: #ff6b00;
+    --void-black: #0a0a0a;
+    --off-white: #f0ede0;
+    --muted-gray: #888;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--void-black);
+    color: var(--off-white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.4rem;
+    color: var(--neon-yellow);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--neon-yellow); }
+
+  .page-header {
+    padding: 6rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .page-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    color: var(--off-white);
+  }
+  .page-title span { color: var(--neon-yellow); }
+  .page-subtitle {
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    color: var(--muted-gray);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .block {
+    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .block:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .block-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    margin-bottom: 0.6rem;
+  }
+  .block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0;
+  }
+  .info-row {
+    display: contents;
+  }
+  .info-key {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .info-val {
+    font-size: 0.78rem;
+    color: var(--off-white);
+    padding: 0.8rem 0 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.7;
+  }
+  .info-val a { color: var(--neon-yellow); text-decoration: none; }
+  .info-val a:hover { text-decoration: underline; }
+
+  .prose {
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: var(--muted-gray);
+  }
+  .prose strong { color: var(--off-white); font-weight: 700; }
+  .prose p { margin-bottom: 1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .note-box {
+    background: rgba(255, 45, 120, 0.08);
+    border: 1px solid rgba(255, 45, 120, 0.2);
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: var(--muted-gray);
+  }
+  .note-box strong { color: var(--hot-pink); }
+
+  footer {
+    padding: 2.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-logo { font-family: 'Permanent Marker', cursive; font-size: 1.1rem; color: var(--neon-yellow); }
+  .footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted-gray); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--off-white); }
+  .footer-links a.active { color: var(--neon-yellow); }
+
+  .presence-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .presence-card:hover { background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.14); }
+  .presence-platform {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+  }
+  .presence-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--off-white);
+  }
+
+  .domain-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .domain-group-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--neon-yellow);
+    padding: 0.6rem 1rem;
+    background: rgba(245,230,66,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .domain-entry {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted-gray);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .domain-entry:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">wwwleckmeinzeh.de</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#projekte">Projekte</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <p class="page-eyebrow">Rechtliches</p>
+  <h1 class="page-title">Im<span>pres</span>sum</h1>
+  <p class="page-subtitle">Ja, wir haben eins. Das Internet hat uns dazu gezwungen. § 5 TMG lässt grüßen.</p>
+</div>
+
+<div class="content">
+
+  <div class="block">
+    <p class="block-label">Anbieter</p>
+    <h2 class="block-title">Angaben gemäß § 5 TMG</h2>
+    <div class="info-grid">
+      <span class="info-key">Name</span>
+      <span class="info-val">Leo Scherr</span>
+
+      <span class="info-key">Adresse</span>
+      <span class="info-val">c/o Block Services<br>Stuttgarter Str. 106<br>70736 Fellbach<br>Deutschland</span>
+
+      <span class="info-key">E-Mail</span>
+      <span class="info-val"><a href="mailto:contact@onthepixel.net">contact@onthepixel.net</a></span>
+
+      <span class="info-key">Telefon</span>
+      <span class="info-val"><a href="tel:+491701850492">+49 170 1850492</a></span>
+
+      <span class="info-key">Website</span>
+      <span class="info-val"><a href="https://wwwleckmeinzeh.de">wwwleckmeinzeh.de</a></span>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Verantwortlichkeit</p>
+    <h2 class="block-title">Verantwortlich für den Inhalt</h2>
+    <div class="info-grid">
+      <span class="info-key">gem. § 18 Abs. 2 MStV</span>
+      <span class="info-val">Leo Scherr<br>c/o Block Services, Stuttgarter Str. 106, 70736 Fellbach</span>
+    </div>
+    <div class="note-box">
+      <strong>Hinweis:</strong> Alle Inhalte auf wwwleckmeinzeh.de und den zugehörigen Projekten (gerhart.studio, norizz.de, deinmutter.de, thejocraft.monster) sind satirisch, parodistisch oder schlicht sinnlos gemeint. Niemand wurde bei der Produktion dieser Websites ernsthaft geschädigt – außer vielleicht unser Ruf.
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Domains</p>
+    <h2 class="block-title">Betriebene Domains</h2>
+    <p class="prose" style="margin-bottom:1.5rem;">Folgende Domains werden durch den oben genannten Verantwortlichen betrieben:</p>
+    <div class="info-grid">
+      <span class="info-key">Hauptdomain</span>
+      <span class="info-val"><a href="https://wwwleckmeinzeh.de" target="_blank">wwwleckmeinzeh.de</a></span>
+      <span class="info-key">Projekt</span>
+      <span class="info-val"><a href="https://gerhart.studio" target="_blank">gerhart.studio</a></span>
+      <span class="info-key">Projekt</span>
+      <span class="info-val"><a href="https://norizz.de" target="_blank">norizz.de</a></span>
+      <span class="info-key">Projekt</span>
+      <span class="info-val"><a href="https://deinmutter.de" target="_blank">deinmutter.de</a></span>
+      <span class="info-key">Projekt</span>
+      <span class="info-val"><a href="https://thejocraft.monster" target="_blank">thejocraft.monster</a></span>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Haftung</p>
+    <h2 class="block-title">Haftung für Inhalte</h2>
+    <div class="prose">
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+      <p>Die Inhalte unserer Seiten wurden mit größter <strong>Sorglosigkeit</strong> erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir – ehrlich gesagt – keine Gewähr übernehmen. Die Inhalte sind zu weiten Teilen absichtlich falsch, übertrieben oder komplett erfunden. Das ist der Punkt.</p>
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Links</p>
+    <h2 class="block-title">Haftung für Links</h2>
+    <div class="prose">
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. <strong>Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar</strong> – aber bei unseren Projekten kann man nie so ganz sicher sein.</p>
+      <p>Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen. Oder auch nicht. Kommt drauf an wie beschäftigt wir gerade sind.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Urheberrecht</p>
+    <h2 class="block-title">Urheberrecht</h2>
+    <div class="prose">
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      <p>Downloads und Kopien dieser Seite sind für den <strong>privaten, nicht kommerziellen Gebrauch</strong> gestattet. Memes dürfen und sollen verbreitet werden – das ist ihre biologische Bestimmung. Bitte mit Quellenangabe, aber wir wissen, dass das niemand macht.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="block-label">Streitbeilegung</p>
+    <h2 class="block-title">Online-Streit&shy;beilegung</h2>
+    <div class="prose">
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" style="color:var(--neon-yellow);" target="_blank">ec.europa.eu/consumers/odr</a></p>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Ehrlich gesagt wären wir auch zu beschäftigt damit, neue sinnlose Domains zu kaufen.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">wwwleckmeinzeh.de</div>
+  <ul class="footer-links">
+    <li><a href="impressum.html" class="active">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+    <li><a href="index.html">Startseite</a></li>
+  </ul>
+  <p class="footer-copy">© 2024 WCLMZ Collective</p>
+</footer>
+
+</body>
+</html>

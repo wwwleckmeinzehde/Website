@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz – wwwleckmeinzeh.de</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-yellow: #f5e642;
+    --hot-pink: #ff2d78;
+    --acid-green: #39ff14;
+    --chaos-orange: #ff6b00;
+    --void-black: #0a0a0a;
+    --off-white: #f0ede0;
+    --muted-gray: #888;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--void-black);
+    color: var(--off-white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.4rem;
+    color: var(--neon-yellow);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--neon-yellow); }
+
+  .page-header {
+    padding: 6rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .page-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--acid-green);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    color: var(--off-white);
+  }
+  .page-title span { color: var(--acid-green); }
+  .page-subtitle {
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    color: var(--muted-gray);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .toc {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 0 2rem;
+  }
+  .toc-inner {
+    background: rgba(57, 255, 20, 0.04);
+    border: 1px solid rgba(57, 255, 20, 0.12);
+    padding: 1.5rem 2rem;
+  }
+  .toc-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acid-green);
+    margin-bottom: 1rem;
+  }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .toc-list a {
+    font-size: 0.72rem;
+    color: var(--muted-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .toc-list a::before {
+    content: '→';
+    color: rgba(57,255,20,0.4);
+    font-size: 0.65rem;
+  }
+  .toc-list a:hover { color: var(--off-white); }
+
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+  .block {
+    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    scroll-margin-top: 80px;
+  }
+  .block:last-child { border-bottom: none; margin-bottom: 0; }
+  .block-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--acid-green);
+    margin-bottom: 0.6rem;
+  }
+  .block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+  .prose {
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: var(--muted-gray);
+  }
+  .prose strong { color: var(--off-white); font-weight: 700; }
+  .prose p { margin-bottom: 1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose a { color: var(--neon-yellow); text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    margin-bottom: 1.5rem;
+  }
+  .info-key {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .info-val {
+    font-size: 0.78rem;
+    color: var(--off-white);
+    padding: 0.8rem 0 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.7;
+  }
+  .info-val a { color: var(--neon-yellow); text-decoration: none; }
+
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    margin-top: 1.5rem;
+  }
+  .right-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 1.25rem;
+  }
+  .right-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--acid-green);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .right-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--off-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .right-desc {
+    font-size: 0.7rem;
+    color: var(--muted-gray);
+    line-height: 1.7;
+  }
+
+  .note-box {
+    background: rgba(57, 255, 20, 0.05);
+    border: 1px solid rgba(57, 255, 20, 0.15);
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: var(--muted-gray);
+  }
+  .note-box strong { color: var(--acid-green); }
+
+  .last-updated {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 4px 10px;
+    margin-top: 0.5rem;
+  }
+
+  footer {
+    padding: 2.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-logo { font-family: 'Permanent Marker', cursive; font-size: 1.1rem; color: var(--neon-yellow); }
+  .footer-copy { font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted-gray); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--off-white); }
+  .footer-links a.active { color: var(--neon-yellow); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">wwwleckmeinzeh.de</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#projekte">Projekte</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <p class="page-eyebrow">Rechtliches</p>
+  <h1 class="page-title">Daten<span>schutz</span>&shy;erklärung</h1>
+  <p class="page-subtitle">Wir nehmen Datenschutz ernst. Naja, so ernst wie wir eben alles nehmen. Aber DSGVO ist DSGVO.</p>
+  <span class="last-updated">Stand: Januar 2024</span>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-inner">
+    <p class="toc-label">Inhaltsverzeichnis</p>
+    <ul class="toc-list">
+      <li><a href="#verantwortlicher">1. Verantwortlicher</a></li>
+      <li><a href="#erhebung">2. Datenerhebung auf dieser Website</a></li>
+      <li><a href="#hosting">3. Hosting</a></li>
+      <li><a href="#cookies">4. Cookies</a></li>
+      <li><a href="#analyse">5. Analyse-Tools</a></li>
+      <li><a href="#kontakt">6. Kontaktformular & E-Mail</a></li>
+      <li><a href="#rechte">7. Deine Rechte</a></li>
+      <li><a href="#sicherheit">8. Datensicherheit</a></li>
+      <li><a href="#aenderungen">9. Änderungen dieser Erklärung</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="block" id="verantwortlicher">
+    <p class="block-label">§ 1</p>
+    <h2 class="block-title">Verantwortlicher</h2>
+    <div class="info-grid">
+      <span class="info-key">Name</span>
+      <span class="info-val">Leo Scherr</span>
+      <span class="info-key">Adresse</span>
+      <span class="info-val">c/o Block Services<br>Stuttgarter Str. 106<br>70736 Fellbach<br>Deutschland</span>
+      <span class="info-key">E-Mail</span>
+      <span class="info-val"><a href="mailto:contact@onthepixel.net">contact@onthepixel.net</a></span>
+      <span class="info-key">Telefon</span>
+      <span class="info-val"><a href="tel:+491701850492">+49 170 1850492</a></span>
+    </div>
+    <div class="prose">
+      <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze sowie sonstiger datenschutzrechtlicher Bestimmungen ist das wwwleckmeinzeh.de Collective.</p>
+    </div>
+  </div>
+
+  <div class="block" id="erhebung">
+    <p class="block-label">§ 2</p>
+    <h2 class="block-title">Datenerhebung auf dieser Website</h2>
+    <div class="prose">
+      <p><strong>Automatisch erhobene Daten (Server-Logfiles)</strong></p>
+      <p>Beim Aufrufen unserer Website werden durch den Webserver automatisch folgende Daten in sogenannten Server-Logfiles gespeichert:</p>
+      <p>Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL (die zuvor besuchte Seite), Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage sowie deine IP-Adresse.</p>
+      <p>Diese Daten sind <strong>nicht bestimmten Personen zuordenbar</strong>. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb der Website).</p>
+      <p>Ehrlich gesagt schauen wir da auch nicht so genau hin. Wir sind zu beschäftigt damit, neue sinnlose Domains zu registrieren.</p>
+    </div>
+    <div class="note-box">
+      <strong>Kurz gesagt:</strong> Wir speichern das Minimum. Wir verkaufen nichts. Wir wollen nur, dass du unsere Memes guckst und wieder gehst.
+    </div>
+  </div>
+
+  <div class="block" id="hosting">
+    <p class="block-label">§ 3</p>
+    <h2 class="block-title">Hosting</h2>
+    <div class="prose">
+      <p>Diese Website wird bei einem Hosting-Anbieter in Deutschland oder der EU gehostet. Dabei können technisch bedingt personenbezogene Daten (insbesondere IP-Adressen) verarbeitet werden.</p>
+      <p>Mit dem Hosting-Anbieter besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO. Dieser stellt sicher, dass die Verarbeitung deiner personenbezogenen Daten nur nach unserer Weisung und im Einklang mit der DSGVO erfolgt.</p>
+      <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+    </div>
+  </div>
+
+  <div class="block" id="cookies">
+    <p class="block-label">§ 4</p>
+    <h2 class="block-title">Cookies</h2>
+    <div class="prose">
+      <p>Unsere Website verwendet <strong>keine Tracking-Cookies</strong> oder Cookies von Drittanbietern. Wir setzen lediglich technisch notwendige Session-Cookies ein, die nach dem Schließen des Browsers automatisch gelöscht werden.</p>
+      <p>Diese Seite hat kein Cookie-Banner, weil wir nichts zu tracken haben. Kein Google Analytics. Kein Facebook Pixel. Kein einziger nerviger Cookie-Popup. Das ist unser Geschenk an dich.</p>
+      <p>Du kannst das Setzen von Cookies in deinem Browser jederzeit deaktivieren. Beachte jedoch, dass dies die Funktionalität mancher Websites beeinträchtigen kann – bei uns wahrscheinlich nicht, weil wir eh so wenig haben.</p>
+    </div>
+    <div class="note-box">
+      <strong>Ehrlichkeitsbox:</strong> Die einzigen Cookies, die wir mögen, sind die mit Schokostückchen. Digitale Cookies sind uns suspekt.
+    </div>
+  </div>
+
+  <div class="block" id="analyse">
+    <p class="block-label">§ 5</p>
+    <h2 class="block-title">Analyse-Tools & Drittanbieter</h2>
+    <div class="prose">
+      <p><strong>Google Analytics:</strong> Nicht vorhanden. Wir wissen nicht, wie viele Leute diese Seite besuchen. Wir wissen nicht, wo sie herkommen. Wir wissen nicht, wie lange sie bleiben. Und das ist okay so.</p>
+      <p><strong>Social-Media-Plugins:</strong> Keine eingebetteten Social-Media-Buttons oder Plugins. Wenn du unsere Inhalte teilen möchtest, kopiere einfach den Link. Old school.</p>
+      <p><strong>Google Fonts:</strong> Diese Seite lädt Schriftarten von Google Fonts. Dabei werden Verbindungen zu Google-Servern hergestellt und deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Wenn dich das stört: Sorry. Die Fonts sind wirklich schön.</p>
+      <p>Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></p>
+    </div>
+  </div>
+
+  <div class="block" id="kontakt">
+    <p class="block-label">§ 6</p>
+    <h2 class="block-title">Kontaktformular & E-Mail</h2>
+    <div class="prose">
+      <p>Wenn du uns über das Kontaktformular oder per E-Mail kontaktierst, werden die von dir angegebenen Daten (Name, E-Mail-Adresse, Nachrichteninhalt) zum Zweck der Bearbeitung deiner Anfrage bei uns gespeichert.</p>
+      <p>Diese Daten geben wir nicht ohne deine Einwilligung weiter. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).</p>
+      <p>Die Daten werden gelöscht, sobald die Anfrage abschließend beantwortet wurde – oder wenn wir vergessen haben, dass du geschrieben hast. Was bei uns vorkommt.</p>
+      <p>Du hast das Recht, der Verarbeitung deiner personenbezogenen Daten jederzeit zu widersprechen. Schreib uns einfach an <a href="mailto:contact@onthepixel.net">contact@onthepixel.net</a>.</p>
+    </div>
+  </div>
+
+  <div class="block" id="rechte">
+    <p class="block-label">§ 7</p>
+    <h2 class="block-title">Deine Rechte nach DSGVO</h2>
+    <div class="prose">
+      <p>Du hast gegenüber uns folgende Rechte hinsichtlich der dich betreffenden personenbezogenen Daten:</p>
+    </div>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-icon">Art. 15</div>
+        <div class="right-title">Auskunft</div>
+        <div class="right-desc">Du kannst jederzeit Auskunft über die bei uns gespeicherten Daten verlangen.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">Art. 16</div>
+        <div class="right-title">Berichtigung</div>
+        <div class="right-desc">Du kannst die Berichtigung unrichtiger Daten verlangen.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">Art. 17</div>
+        <div class="right-title">Löschung</div>
+        <div class="right-desc">Du kannst die Löschung deiner Daten verlangen. Das "Recht auf Vergessen."</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">Art. 18</div>
+        <div class="right-title">Einschränkung</div>
+        <div class="right-desc">Du kannst die Einschränkung der Verarbeitung verlangen.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">Art. 20</div>
+        <div class="right-title">Übertragbarkeit</div>
+        <div class="right-desc">Du kannst deine Daten in einem maschinenlesbaren Format erhalten.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">Art. 21</div>
+        <div class="right-title">Widerspruch</div>
+        <div class="right-desc">Du kannst der Verarbeitung deiner Daten widersprechen.</div>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:1.5rem;">
+      <p>Um diese Rechte auszuüben, kontaktiere uns unter <a href="mailto:contact@onthepixel.net">contact@onthepixel.net</a>. Außerdem hast du das Recht, dich bei der zuständigen Datenschutzbehörde zu beschweren – in Deutschland ist das der/die Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI).</p>
+    </div>
+  </div>
+
+  <div class="block" id="sicherheit">
+    <p class="block-label">§ 8</p>
+    <h2 class="block-title">Datensicherheit</h2>
+    <div class="prose">
+      <p>Wir verwenden SSL/TLS-Verschlüsselung für die Übertragung von Daten auf dieser Website. Eine verschlüsselte Verbindung erkennst du daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in deiner Browserzeile.</p>
+      <p>Wir treffen technische und organisatorische Maßnahmen, um deine Daten gegen zufällige oder vorsätzliche Manipulation, Verlust oder unberechtigten Zugriff zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.</p>
+      <p>Perfekte Sicherheit gibt es nicht – das weiß jeder. Aber wir geben unser Bestes. Solange wir nicht gerade einen neuen Meme erstellen.</p>
+    </div>
+  </div>
+
+  <div class="block" id="aenderungen">
+    <p class="block-label">§ 9</p>
+    <h2 class="block-title">Änderungen dieser Erklärung</h2>
+    <div class="prose">
+      <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.</p>
+      <p>Für deinen erneuten Besuch gilt dann die neue Datenschutzerklärung. Wir empfehlen dir, diese Seite regelmäßig zu besuchen. Oder nicht. Du weißt schon.</p>
+      <p>Bei wesentlichen Änderungen wirst du – soweit möglich – informiert. Stand dieser Datenschutzerklärung: <strong>Januar 2024</strong>.</p>
+    </div>
+    <div class="note-box">
+      <strong>Abschließende Worte:</strong> Wir wissen, dass du diese Erklärung wahrscheinlich nicht gelesen hast. Das ist okay. Niemand liest Datenschutzerklärungen. Aber wir haben sie trotzdem geschrieben, weil das Gesetz das so will. Respekt ans Gesetz. Manchmal.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">wwwleckmeinzeh.de</div>
+  <ul class="footer-links">
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html" class="active">Datenschutz</a></li>
+    <li><a href="index.html">Startseite</a></li>
+  </ul>
+  <p class="footer-copy">© 2024 WCLMZ Collective</p>
+</footer>
+
+</body>
+</html>
