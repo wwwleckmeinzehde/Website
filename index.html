@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wwwleckmeinzeh.de – Internetkriminalität auf höchstem Niveau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-yellow: #f5e642;
+    --hot-pink: #ff2d78;
+    --acid-green: #39ff14;
+    --chaos-orange: #ff6b00;
+    --void-black: #0a0a0a;
+    --off-white: #f0ede0;
+    --muted-gray: #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void-black);
+    color: var(--off-white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* SCANLINES OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: var(--hot-pink);
+    color: var(--void-black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 6px 0;
+    border-bottom: 3px solid var(--neon-yellow);
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.4rem;
+    color: var(--neon-yellow);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--neon-yellow); }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(6rem, 18vw, 22rem);
+    color: rgba(255,255,255,0.025);
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title span { color: var(--neon-yellow); }
+  .hero-sub {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: var(--muted-gray);
+    max-width: 520px;
+    line-height: 1.8;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .hero-sub strong { color: var(--off-white); }
+  .btn-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid;
+    transition: all 0.18s;
+  }
+  .btn-primary {
+    background: var(--neon-yellow);
+    border-color: var(--neon-yellow);
+    color: var(--void-black);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--neon-yellow);
+  }
+  .btn-outline {
+    background: transparent;
+    border-color: rgba(255,255,255,0.3);
+    color: var(--off-white);
+  }
+  .btn-outline:hover {
+    border-color: var(--off-white);
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted-gray), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.4; } 50% { opacity: 1; }
+  }
+
+  /* SECTION LAYOUT */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--muted-gray);
+    font-size: 0.8rem;
+    line-height: 1.9;
+    max-width: 580px;
+  }
+
+  /* DIVIDER */
+  hr.chaos {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  @media(max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .about-visual {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: 'lol';
+    position: absolute;
+    right: -1rem;
+    bottom: -2rem;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 8rem;
+    color: rgba(245,230,66,0.07);
+    pointer-events: none;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--neon-yellow);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+  }
+
+  /* PROJECTS GRID */
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    border: 1.5px solid rgba(255,255,255,0.08);
+  }
+  .project-card {
+    background: rgba(255,255,255,0.025);
+    padding: 2.5rem 2rem;
+    border: 1.5px solid rgba(255,255,255,0.05);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .project-card:hover {
+    background: rgba(255,255,255,0.055);
+    border-color: rgba(255,255,255,0.15);
+  }
+  .project-card:hover .project-arrow { color: var(--neon-yellow); transform: translate(4px, -4px); }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid;
+    margin-bottom: 1.5rem;
+  }
+  .tag-meme { border-color: var(--hot-pink); color: var(--hot-pink); }
+  .tag-troll { border-color: var(--acid-green); color: var(--acid-green); }
+  .tag-website { border-color: var(--chaos-orange); color: var(--chaos-orange); }
+  .tag-chaos { border-color: var(--neon-yellow); color: var(--neon-yellow); }
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc {
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: var(--muted-gray);
+  }
+  .project-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+  .project-url {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.25);
+    margin-top: 1.2rem;
+  }
+
+  /* MANIFESTO */
+  .manifesto-section {
+    background: var(--hot-pink);
+    color: var(--void-black);
+    padding: 5rem 2rem;
+  }
+  .manifesto-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .manifesto-inner .section-label { color: rgba(0,0,0,0.5); }
+  .manifesto-inner .section-title { color: var(--void-black); }
+  .manifesto-list {
+    list-style: none;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+  .manifesto-list li {
+    background: rgba(0,0,0,0.08);
+    padding: 2rem 1.5rem;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: rgba(0,0,0,0.75);
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .manifesto-list li strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--void-black);
+    margin-bottom: 0.5rem;
+  }
+
+  /* TEAM */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+    border: 1.5px solid rgba(255,255,255,0.06);
+  }
+  .team-card {
+    padding: 2rem 1.5rem;
+    border: 1.5px solid rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.2s;
+  }
+  .team-card:hover { background: rgba(255,255,255,0.045); }
+  .team-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 0;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--neon-yellow);
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+  .team-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 5rem 2rem;
+  }
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media(max-width: 700px) { .contact-inner { grid-template-columns: 1fr; } }
+  .contact-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--muted-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .contact-link:hover { color: var(--off-white); }
+  .contact-link-icon {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--off-white);
+    padding: 0.75rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--neon-yellow); }
+  .form-group textarea { min-height: 100px; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: var(--neon-yellow);
+  }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--muted-gray);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--off-white); }
+
+  /* GLITCH on hover for special elements */
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+  .glitch:hover {
+    animation: glitch 0.3s steps(2) infinite;
+  }
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 var(--hot-pink), -2px 0 var(--acid-green); }
+    25% { text-shadow: -2px 0 var(--hot-pink), 2px 0 var(--acid-green); }
+    50% { text-shadow: 2px 2px var(--hot-pink), -2px -2px var(--acid-green); }
+    75% { text-shadow: 0 0 var(--hot-pink), 0 0 var(--acid-green); }
+    100% { text-shadow: 2px 0 var(--hot-pink), -2px 0 var(--acid-green); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <span class="ticker-inner">
+    ★ WCLMZ – wir machen das internet schlimmer ★ keine verantwortung ★ nur vibes ★ gerhart.studio ★ norizz.de ★ deinmutter.de ★ thejocraft.monster ★ und mehr kommt ★ keine sorge ★ WCLMZ – wir machen das internet schlimmer ★ keine verantwortung ★ nur vibes ★
+  </span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">wwwleckmeinzeh.de</a>
+  <ul class="nav-links">
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#projekte">Projekte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-text">CHAOS</div>
+  <p class="hero-eyebrow">Kreativagentur für digitalen Schwachsinn</p>
+  <h1 class="hero-title glitch">WIR MACHEN<br><span>DAS INTERNET</span><br>SCHLIMMER</h1>
+  <p class="hero-sub">
+    Willkommen bei <strong>wwwleckmeinzeh.de</strong> – der Organisation, die niemand gefragt hat,
+    aber das Internet trotzdem bevölkert. Wir erschaffen Memes, Trollwebsites
+    und digitale Kunstwerke, auf die die Gesellschaft gewartet hat. Vielleicht.
+  </p>
+  <div class="btn-group">
+    <a href="#projekte" class="btn btn-primary">Unsere Meisterwerke</a>
+    <a href="#about" class="btn btn-outline">Was ist das hier?</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Runter</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<hr class="chaos">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">Über die Organisation</p>
+      <h2 class="section-title">Digitale Vandalen<br>mit Herzblut</h2>
+      <p class="section-desc" style="margin-bottom:1rem;">
+        Seit ihrer Gründung in einem Keller mit schlechtem WLAN hat sich wwwleckmeinzeh.de
+        zur führenden Instanz für qualitativ hochwertigen digitalen Unsinn in der DACH-Region entwickelt.
+      </p>
+      <p class="section-desc">
+        Wir glauben daran, dass das Internet ein besserer Ort wäre, wenn es noch mehr sinnlose
+        Websites mit komischen Domain-Namen gäbe. Deswegen machen wir genau das.
+        Professionell. Liebevoll. Komplett unnötig.
+      </p>
+    </div>
+    <div class="about-visual">
+      <div class="stat-row">
+        <span class="stat-label">Websites gebaut</span>
+        <span class="stat-num">∞</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Memes produziert</span>
+        <span class="stat-num">4.200</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Server abgestürzt</span>
+        <span class="stat-num">69</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Beschwerden</span>
+        <span class="stat-num">lol</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="chaos">
+
+<!-- PROJECTS -->
+<section id="projekte" style="max-width:1100px; margin:0 auto; padding: 5rem 2rem;">
+  <div class="projects-header">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Ausgewählte<br>Meisterwerke</h2>
+    </div>
+    <p class="section-desc" style="max-width:300px; text-align:right;">
+      Jede dieser Websites repräsentiert Stunden verschwendeter Arbeitszeit
+      und den unbedingten Willen, etwas Sinnloses zu erschaffen.
+    </p>
+  </div>
+  <div class="projects-grid">
+
+    <a href="https://gerhart.studio" target="_blank" class="project-card">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag tag-chaos">Kunstwerk</span>
+      <div class="project-name">gerhart.studio</div>
+      <p class="project-desc">Das digitale Zuhause von Gerhart. Was Gerhart macht? Gute Frage. Besuch die Seite und finde es selbst heraus. Wir wissen es auch nicht genau.</p>
+      <p class="project-url">gerhart.studio</p>
+    </a>
+
+    <a href="https://norizz.de" target="_blank" class="project-card">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag tag-troll">Troll</span>
+      <div class="project-name">norizz.de</div>
+      <p class="project-desc">Norizz.de – ein Name, der alles sagt und nichts erklärt. Eine Website, die existiert, weil die Domain günstig war und weil man musste.</p>
+      <p class="project-url">norizz.de</p>
+    </a>
+
+    <a href="https://deinmutter.de" target="_blank" class="project-card">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag tag-meme">Meme</span>
+      <div class="project-name">deinmutter.de</div>
+      <p class="project-desc">Der Klassiker. Die URL, die jeder tippen wollte aber keiner hatte. Wir haben sie. Du weißt was das bedeutet. Deine Mutter würde das nicht gutheißen.</p>
+      <p class="project-url">deinmutter.de</p>
+    </a>
+
+    <a href="https://thejocraft.monster" target="_blank" class="project-card">
+      <div class="project-arrow">↗</div>
+      <span class="project-tag tag-website">Monster</span>
+      <div class="project-name">thejocraft.monster</div>
+      <p class="project-desc">Eine .monster Domain. Für Jocraft. Weil warum nicht. Das ist die Energie, die wir bei wwwleckmeinzeh.de repräsentieren. Absolut unangebracht. Absolut notwendig.</p>
+      <p class="project-url">thejocraft.monster</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<div class="manifesto-section">
+  <div class="manifesto-inner">
+    <p class="section-label">Unser Credo</p>
+    <h2 class="section-title">Das WCLMZ<br>Manifest</h2>
+    <ul class="manifesto-list">
+      <li>
+        <strong>Regel #1</strong>
+        Wenn eine Domain komisch klingt, kaufen wir sie. Finanzplanung ist für Konzerne.
+      </li>
+      <li>
+        <strong>Regel #2</strong>
+        Jeder Meme, der zu erklären ist, ist kein guter Meme. Außer wenn er trotzdem lustig ist.
+      </li>
+      <li>
+        <strong>Regel #3</strong>
+        Troll mit Stil. Niemand soll böse sein. Außer vielleicht ein bisschen.
+      </li>
+      <li>
+        <strong>Regel #4</strong>
+        Das Internet gehört allen. Also verschmutzen wir es gemeinsam.
+      </li>
+      <li>
+        <strong>Regel #5</strong>
+        Eine Website ohne sinnlosen Inhalt ist nur ein leerer Server. Leere Server sind traurig.
+      </li>
+      <li>
+        <strong>Regel #6</strong>
+        Wenn du fragst "Warum?", hast du die Mission noch nicht verstanden.
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- CONTACT -->
+<div class="contact-section" id="kontakt">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label">Kontakt</p>
+      <h2 class="section-title">Hast du<br>eine Idee?</h2>
+      <p class="section-desc" style="margin-top:0.5rem;">
+        Hast du eine Domain, die noch sinnloser ist als alles, was wir je gemacht haben?
+        Hast du einen Meme, der die Menschheit verändern wird?
+        Schreib uns. Wir antworten vielleicht.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:ja@wwwleckmeinzeh.de" class="contact-link">
+          <span class="contact-link-icon">@</span>
+          ja@wwwleckmeinzeh.de
+        </a>
+        <a href="https://wwwleckmeinzeh.de" class="contact-link">
+          <span class="contact-link-icon">W</span>
+          wwwleckmeinzeh.de
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">X</span>
+          @leckmeinzeh (existiert nicht)
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label>Dein Name (oder Alias)</label>
+        <input type="text" placeholder="z.B. Lord Trolius III">
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" placeholder="name@domain.lol">
+      </div>
+      <div class="form-group">
+        <label>Deine Meisteridee</label>
+        <textarea placeholder="Ich habe die Domain leckmirbitte.de und eine Vision..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%; cursor:pointer;" onclick="alert('lol danke. wir melden uns nicht. oder doch. kommt drauf an.')">
+        Absenden (oder so)
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">wwwleckmeinzeh.de</div>
+  <ul class="footer-links">
+    <li><a href="#">Impressum</a></li>
+    <li><a href="#">Datenschutz</a></li>
+    <li><a href="#">AGB</a></li>
+    <li><a href="#">Keine Ahnung</a></li>
+  </ul>
+  <p class="footer-copy">© 2024 WCLMZ Collective – Alle Rechte vorbehalten, keiner benutzt sie.</p>
+</footer>
+
+</body>
+</html>
